@@ -2916,7 +2916,7 @@ float_t lsm6dsrx_from_fs4000dps_to_mdps(int16_t lsb);
 
 float_t lsm6dsrx_from_lsb_to_celsius(int16_t lsb);
 
-float_t lsm6dsrx_from_lsb_to_nsec(int32_t lsb);
+uint64_t lsm6dsrx_from_lsb_to_nsec(uint32_t lsb);
 
 typedef enum
 {
