@@ -6813,6 +6813,7 @@ int32_t lsm6dsrx_fifo_watermark_set(const stmdev_ctx_t *ctx, uint16_t val)
   lsm6dsrx_fifo_ctrl2_t fifo_ctrl2;
   int32_t ret;
 
+  ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_FIFO_CTRL1, (uint8_t *)&fifo_ctrl1, 1);
   ret += lsm6dsrx_read_reg(ctx, LSM6DSRX_FIFO_CTRL2, (uint8_t *)&fifo_ctrl2, 1);
 
   if (ret == 0)
