@@ -7975,18 +7975,6 @@ int32_t lsm6dsrx_fifo_sensor_tag_get(const stmdev_ctx_t *ctx,
       *val = LSM6DSRX_STEP_CPUNTER_TAG;
       break;
 
-    case LSM6DSRX_GAME_ROTATION_TAG:
-      *val = LSM6DSRX_GAME_ROTATION_TAG;
-      break;
-
-    case LSM6DSRX_GEOMAG_ROTATION_TAG:
-      *val = LSM6DSRX_GEOMAG_ROTATION_TAG;
-      break;
-
-    case LSM6DSRX_ROTATION_TAG:
-      *val = LSM6DSRX_ROTATION_TAG;
-      break;
-
     case LSM6DSRX_SENSORHUB_NACK_TAG:
       *val = LSM6DSRX_SENSORHUB_NACK_TAG;
       break;
@@ -8674,7 +8662,7 @@ int32_t lsm6dsrx_den_mark_axis_z_set(const stmdev_ctx_t *ctx, uint8_t val)
 
   if (ret == 0)
   {
-    ctrl9_xl.den_x = (uint8_t)val;
+    ctrl9_xl.den_z = (uint8_t)val;
     ret = lsm6dsrx_write_reg(ctx, LSM6DSRX_CTRL9_XL,
                              (uint8_t *)&ctrl9_xl, 1);
   }
@@ -8698,7 +8686,7 @@ int32_t lsm6dsrx_den_mark_axis_z_get(const stmdev_ctx_t *ctx,
 
   ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_CTRL9_XL,
                           (uint8_t *)&ctrl9_xl, 1);
-  *val = ctrl9_xl.den_x;
+  *val = ctrl9_xl.den_z;
 
   return ret;
 }
