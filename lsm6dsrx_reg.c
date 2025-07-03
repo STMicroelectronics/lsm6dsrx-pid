@@ -10473,13 +10473,6 @@ int32_t lsm6dsrx_fsm_number_of_programs_set(const stmdev_ctx_t *ctx,
 
   ret = lsm6dsrx_ln_pg_write_byte(ctx, LSM6DSRX_FSM_PROGRAMS, buff);
 
-  if (ret == 0)
-  {
-    ret = lsm6dsrx_ln_pg_write_byte(ctx,
-                                    LSM6DSRX_FSM_PROGRAMS + 0x01U,
-                                    buff);
-  }
-
   return ret;
 }
 
