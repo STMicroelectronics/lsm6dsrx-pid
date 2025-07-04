@@ -10852,8 +10852,7 @@ int32_t lsm6dsrx_mlc_mag_sensitivity_get(const stmdev_ctx_t *ctx,
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
-int32_t lsm6dsrx_sh_read_data_raw_get(const stmdev_ctx_t *ctx,
-                                      lsm6dsrx_emb_sh_read_t *val,
+int32_t lsm6dsrx_sh_read_data_raw_get(const stmdev_ctx_t *ctx, uint8_t *val,
                                       uint8_t len)
 {
   int32_t ret;
