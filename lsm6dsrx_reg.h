@@ -3097,8 +3097,9 @@ int32_t lsm6dsrx_aux_sdo_ocs_mode_get(const stmdev_ctx_t *ctx,
 
 typedef enum
 {
-  LSM6DSRX_AUX_ON                    = 1,
-  LSM6DSRX_AUX_ON_BY_AUX_INTERFACE   = 0,
+  LSM6DSRX_OIS_OFF                   = 0,
+  LSM6DSRX_OIS_PRIMARY_INTERFACE_ON  = 3,
+  LSM6DSRX_OIS_AUX_INTERFACE_ON      = 1,
 } lsm6dsrx_ois_on_t;
 int32_t lsm6dsrx_aux_pw_on_ctrl_set(const stmdev_ctx_t *ctx,
                                     lsm6dsrx_ois_on_t val);
