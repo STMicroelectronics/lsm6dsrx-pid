@@ -3575,7 +3575,7 @@ typedef enum
   LSM6DSRX_XL_BATCHED_AT_1667Hz  =  8,
   LSM6DSRX_XL_BATCHED_AT_3333Hz  =  9,
   LSM6DSRX_XL_BATCHED_AT_6667Hz  = 10,
-  LSM6DSRX_XL_BATCHED_AT_6Hz5    = 11,
+  LSM6DSRX_XL_BATCHED_AT_1Hz6    = 11,
 } lsm6dsrx_bdr_xl_t;
 int32_t lsm6dsrx_fifo_xl_batch_set(const stmdev_ctx_t *ctx,
                                    lsm6dsrx_bdr_xl_t val);
