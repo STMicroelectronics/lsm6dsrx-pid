@@ -11465,16 +11465,16 @@ int32_t lsm6dsrx_sh_pin_mode_get(const stmdev_ctx_t *ctx,
 
   switch (master_config.shub_pu_en)
   {
-    case LSM6DSRX_EXT_PULL_UP:
-      *val = LSM6DSRX_EXT_PULL_UP;
+    case 0:
+      *val = LSM6DSRX_INTERNAL_PULL_UP_OFF;
       break;
 
-    case LSM6DSRX_INTERNAL_PULL_UP:
-      *val = LSM6DSRX_INTERNAL_PULL_UP;
+    case 1:
+      *val = LSM6DSRX_INTERNAL_PULL_UP_ON;
       break;
 
     default:
-      *val = LSM6DSRX_EXT_PULL_UP;
+      *val = LSM6DSRX_INTERNAL_PULL_UP_OFF;
       break;
   }
 
