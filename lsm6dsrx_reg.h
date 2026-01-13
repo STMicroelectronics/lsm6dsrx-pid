@@ -3189,10 +3189,10 @@ int32_t lsm6dsrx_aux_spi_mode_get(const stmdev_ctx_t *ctx,
 
 typedef enum
 {
-  LSM6DSRX_351Hz39 = 0,
-  LSM6DSRX_236Hz63 = 1,
-  LSM6DSRX_172Hz70 = 2,
-  LSM6DSRX_937Hz91 = 3,
+  LSM6DSRX_297Hz = 0,
+  LSM6DSRX_222Hz = 1,
+  LSM6DSRX_154Hz = 2,
+  LSM6DSRX_470Hz = 3,
 } lsm6dsrx_ftype_ois_t;
 int32_t lsm6dsrx_aux_gy_lp1_bandwidth_set(const stmdev_ctx_t *ctx,
                                           lsm6dsrx_ftype_ois_t val);
@@ -3242,7 +3242,7 @@ typedef enum
   LSM6DSRX_33Hz6 = 4,
   LSM6DSRX_16Hz7 = 5,
   LSM6DSRX_8Hz3  = 6,
-  LSM6DSRX_4Hz11 = 7,
+  LSM6DSRX_4Hz14 = 7,
 } lsm6dsrx_filter_xl_conf_ois_t;
 int32_t lsm6dsrx_aux_xl_bandwidth_set(const stmdev_ctx_t *ctx,
                                       lsm6dsrx_filter_xl_conf_ois_t val);
