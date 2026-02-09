@@ -253,9 +253,9 @@ typedef struct
   uint8_t fifo_mode                : 3;
   uint8_t not_used_01              : 1;
   uint8_t odr_t_batch              : 2;
-  uint8_t odr_ts_batch             : 2;
+  uint8_t dec_ts_batch             : 2;
 #elif DRV_BYTE_ORDER == DRV_BIG_ENDIAN
-  uint8_t odr_ts_batch             : 2;
+  uint8_t dec_ts_batch             : 2;
   uint8_t odr_t_batch              : 2;
   uint8_t not_used_01              : 1;
   uint8_t fifo_mode                : 3;
@@ -3633,11 +3633,11 @@ typedef enum
   LSM6DSRX_DEC_1         = 1,
   LSM6DSRX_DEC_8         = 2,
   LSM6DSRX_DEC_32        = 3,
-} lsm6dsrx_odr_ts_batch_t;
+} lsm6dsrx_dec_ts_batch_t;
 int32_t lsm6dsrx_fifo_timestamp_decimation_set(const stmdev_ctx_t *ctx,
-                                               lsm6dsrx_odr_ts_batch_t val);
+                                               lsm6dsrx_dec_ts_batch_t val);
 int32_t lsm6dsrx_fifo_timestamp_decimation_get(const stmdev_ctx_t *ctx,
-                                               lsm6dsrx_odr_ts_batch_t *val);
+                                               lsm6dsrx_dec_ts_batch_t *val);
 
 typedef enum
 {
