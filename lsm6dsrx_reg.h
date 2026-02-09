@@ -4029,7 +4029,7 @@ typedef enum
   LSM6DSRX_SH_ODR_104Hz = 0,
   LSM6DSRX_SH_ODR_52Hz  = 1,
   LSM6DSRX_SH_ODR_26Hz  = 2,
-  LSM6DSRX_SH_ODR_13Hz  = 3,
+  LSM6DSRX_SH_ODR_12Hz5 = 3,
 } lsm6dsrx_shub_odr_t;
 int32_t lsm6dsrx_sh_data_rate_set(const stmdev_ctx_t *ctx,
                                   lsm6dsrx_shub_odr_t val);

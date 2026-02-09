@@ -11760,20 +11760,20 @@ int32_t lsm6dsrx_sh_data_rate_get(const stmdev_ctx_t *ctx,
 
   switch (slv0_config.shub_odr)
   {
-    case LSM6DSRX_SH_ODR_104Hz:
+    case 0x00U:
       *val = LSM6DSRX_SH_ODR_104Hz;
       break;
 
-    case LSM6DSRX_SH_ODR_52Hz:
+    case 0x01U:
       *val = LSM6DSRX_SH_ODR_52Hz;
       break;
 
-    case LSM6DSRX_SH_ODR_26Hz:
+    case 0x02U:
       *val = LSM6DSRX_SH_ODR_26Hz;
       break;
 
-    case LSM6DSRX_SH_ODR_13Hz:
-      *val = LSM6DSRX_SH_ODR_13Hz;
+    case 0x03U:
+      *val = LSM6DSRX_SH_ODR_12Hz5;
       break;
 
     default:
