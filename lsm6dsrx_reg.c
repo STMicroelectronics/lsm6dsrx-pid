@@ -7608,8 +7608,8 @@ int32_t lsm6dsrx_fifo_gy_batch_get(const stmdev_ctx_t *ctx,
       *val = LSM6DSRX_GY_BATCHED_AT_6667Hz;
       break;
 
-    case LSM6DSRX_GY_BATCHED_6Hz5:
-      *val = LSM6DSRX_GY_BATCHED_6Hz5;
+    case LSM6DSRX_GY_BATCHED_AT_6Hz5:
+      *val = LSM6DSRX_GY_BATCHED_AT_6Hz5;
       break;
 
     default:
