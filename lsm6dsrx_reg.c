@@ -507,6 +507,7 @@ int32_t lsm6dsrx_xl_data_rate_get(const stmdev_ctx_t *ctx,
     case LSM6DSRX_XL_ODR_833Hz:
       *val = LSM6DSRX_XL_ODR_833Hz;
       break;
+
     case LSM6DSRX_XL_ODR_1666Hz:
       *val = LSM6DSRX_XL_ODR_1666Hz;
       break;
@@ -1194,25 +1195,27 @@ int32_t lsm6dsrx_all_sources_get(const stmdev_ctx_t *ctx,
   }
 
   ret = lsm6dsrx_mem_bank_set(ctx, LSM6DSRX_EMBEDDED_FUNC_BANK);
-
-  if (ret == 0)
+  if (ret != 0)
   {
-    ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_EMB_FUNC_STATUS,
-                            (uint8_t *)&val->emb_func_status, 1);
+    goto exit;
   }
 
-  if (ret == 0)
+  ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_EMB_FUNC_STATUS,
+                          (uint8_t *)&val->emb_func_status, 1);
+  if (ret != 0)
   {
-    ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_FSM_STATUS_A,
-                            (uint8_t *)&val->fsm_status_a, 1);
+    goto exit;
   }
-
-  if (ret == 0)
+  ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_FSM_STATUS_A,
+                          (uint8_t *)&val->fsm_status_a, 1);
+  if (ret != 0)
   {
-    ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_FSM_STATUS_B,
-                            (uint8_t *)&val->fsm_status_b, 1);
+    goto exit;
   }
+  ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_FSM_STATUS_B,
+                          (uint8_t *)&val->fsm_status_b, 1);
 
+exit:
   ret += lsm6dsrx_mem_bank_set(ctx, LSM6DSRX_USER_BANK);
 
   return ret;
@@ -1240,7 +1243,7 @@ int32_t lsm6dsrx_status_reg_get(const stmdev_ctx_t *ctx,
   * @brief  Accelerometer new data available.[get]
   *
   * @param  ctx    Read / write interface definitions.(ptr)
-  * @param  val    Change the values of xlda in reg STATUS_REG
+  * @param  val    Get the values of xlda in reg STATUS_REG
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
@@ -1266,7 +1269,7 @@ int32_t lsm6dsrx_xl_flag_data_ready_get(const stmdev_ctx_t *ctx,
   * @brief  Gyroscope new data available.[get]
   *
   * @param  ctx    Read / write interface definitions.(ptr)
-  * @param  val    Change the values of gda in reg STATUS_REG
+  * @param  val    Get the values of gda in reg STATUS_REG
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
@@ -1292,7 +1295,7 @@ int32_t lsm6dsrx_gy_flag_data_ready_get(const stmdev_ctx_t *ctx,
   * @brief  Temperature new data available.[get]
   *
   * @param  ctx    Read / write interface definitions.(ptr)
-  * @param  val    Change the values of tda in reg STATUS_REG
+  * @param  val    Get the values of tda in reg STATUS_REG
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
@@ -2948,8 +2951,8 @@ int32_t lsm6dsrx_xl_hp_path_on_out_get(const stmdev_ctx_t *ctx,
     return ret;
   }
 
-  switch (((ctrl8_xl.hp_ref_mode_xl << 5) + (ctrl8_xl.hp_slope_xl_en <<
-                                             4) +
+  switch (((ctrl8_xl.hp_ref_mode_xl << 5) +
+           (ctrl8_xl.hp_slope_xl_en << 4) +
            ctrl8_xl.hpcf_xl))
   {
     case LSM6DSRX_HP_PATH_DISABLE_ON_OUT:
@@ -3176,6 +3179,7 @@ int32_t lsm6dsrx_xl_hp_path_internal_get(const stmdev_ctx_t *ctx,
 
   return ret;
 }
+
 
 /**
   * @brief  Enables gyroscope digital high-pass filter. The filter is enabled
@@ -5857,6 +5861,7 @@ int32_t lsm6dsrx_act_pin_notification_set(const stmdev_ctx_t *ctx,
   return ret;
 }
 
+
 /**
   * @brief  Drives the sleep status instead of sleep change on INT pins
   *         (only if INT1_SLEEP_CHANGE or INT2_SLEEP_CHANGE bits
@@ -5897,6 +5902,7 @@ int32_t lsm6dsrx_act_pin_notification_get(const stmdev_ctx_t *ctx,
 
   return ret;
 }
+
 
 /**
   * @brief  Enable inactivity function.[set]
@@ -7066,7 +7072,7 @@ int32_t lsm6dsrx_fifo_watermark_get(const stmdev_ctx_t *ctx,
   }
 
   *val = fifo_ctrl2.wtm;
-  *val = (*val * 256U) +  fifo_ctrl1.wtm;;
+  *val = (*val * 256U) +  fifo_ctrl1.wtm;
 
   return ret;
 }
@@ -8200,84 +8206,84 @@ int32_t lsm6dsrx_fifo_sensor_tag_get(const stmdev_ctx_t *ctx,
 
   switch (fifo_data_out_tag.tag_sensor)
   {
-    case LSM6DSRX_GYRO_NC_TAG:
+    case 0x01U:
       *val = LSM6DSRX_GYRO_NC_TAG;
       break;
 
-    case LSM6DSRX_XL_NC_TAG:
+    case 0x02U:
       *val = LSM6DSRX_XL_NC_TAG;
       break;
 
-    case LSM6DSRX_TEMPERATURE_TAG:
+    case 0x03U:
       *val = LSM6DSRX_TEMPERATURE_TAG;
       break;
 
-    case LSM6DSRX_TIMESTAMP_TAG:
+    case 0x04U:
       *val = LSM6DSRX_TIMESTAMP_TAG;
       break;
 
-    case LSM6DSRX_CFG_CHANGE_TAG:
+    case 0x05U:
       *val = LSM6DSRX_CFG_CHANGE_TAG;
       break;
 
-    case LSM6DSRX_XL_NC_T_2_TAG:
+    case 0x06U:
       *val = LSM6DSRX_XL_NC_T_2_TAG;
       break;
 
-    case LSM6DSRX_XL_NC_T_1_TAG:
+    case 0x07U:
       *val = LSM6DSRX_XL_NC_T_1_TAG;
       break;
 
-    case LSM6DSRX_XL_2XC_TAG:
+    case 0x08U:
       *val = LSM6DSRX_XL_2XC_TAG;
       break;
 
-    case LSM6DSRX_XL_3XC_TAG:
+    case 0x09U:
       *val = LSM6DSRX_XL_3XC_TAG;
       break;
 
-    case LSM6DSRX_GYRO_NC_T_2_TAG:
+    case 0x0AU:
       *val = LSM6DSRX_GYRO_NC_T_2_TAG;
       break;
 
-    case LSM6DSRX_GYRO_NC_T_1_TAG:
+    case 0x0BU:
       *val = LSM6DSRX_GYRO_NC_T_1_TAG;
       break;
 
-    case LSM6DSRX_GYRO_2XC_TAG:
+    case 0x0CU:
       *val = LSM6DSRX_GYRO_2XC_TAG;
       break;
 
-    case LSM6DSRX_GYRO_3XC_TAG:
+    case 0x0DU:
       *val = LSM6DSRX_GYRO_3XC_TAG;
       break;
 
-    case LSM6DSRX_SENSORHUB_SLAVE0_TAG:
+    case 0x0EU:
       *val = LSM6DSRX_SENSORHUB_SLAVE0_TAG;
       break;
 
-    case LSM6DSRX_SENSORHUB_SLAVE1_TAG:
+    case 0x0FU:
       *val = LSM6DSRX_SENSORHUB_SLAVE1_TAG;
       break;
 
-    case LSM6DSRX_SENSORHUB_SLAVE2_TAG:
+    case 0x10U:
       *val = LSM6DSRX_SENSORHUB_SLAVE2_TAG;
       break;
 
-    case LSM6DSRX_SENSORHUB_SLAVE3_TAG:
+    case 0x11U:
       *val = LSM6DSRX_SENSORHUB_SLAVE3_TAG;
       break;
 
-    case LSM6DSRX_STEP_CPUNTER_TAG:
-      *val = LSM6DSRX_STEP_CPUNTER_TAG;
+    case 0x12U:
+      *val = LSM6DSRX_STEP_COUNTER_TAG;
       break;
 
-    case LSM6DSRX_SENSORHUB_NACK_TAG:
+    case 0x19U:
       *val = LSM6DSRX_SENSORHUB_NACK_TAG;
       break;
 
     default:
-      *val = LSM6DSRX_SENSORHUB_NACK_TAG;
+      *val = LSM6DSRX_XL_NC_TAG;
       break;
   }
 
@@ -8362,20 +8368,23 @@ int32_t lsm6dsrx_sh_batch_slave_0_set(const stmdev_ctx_t *ctx,
   int32_t ret;
 
   ret = lsm6dsrx_mem_bank_set(ctx, LSM6DSRX_SENSOR_HUB_BANK);
-
-  if (ret == 0)
+  if (ret != 0)
   {
-    ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_SLV0_CONFIG,
-                            (uint8_t *)&slv0_config, 1);
+    goto exit;
   }
 
-  if (ret == 0)
+  ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_SLV0_CONFIG,
+                          (uint8_t *)&slv0_config, 1);
+  if (ret != 0)
   {
-    slv0_config. batch_ext_sens_0_en = (uint8_t)val;
-    ret = lsm6dsrx_write_reg(ctx, LSM6DSRX_SLV0_CONFIG,
-                             (uint8_t *)&slv0_config, 1);
+    goto exit;
   }
 
+  slv0_config. batch_ext_sens_0_en = (uint8_t)val;
+  ret = lsm6dsrx_write_reg(ctx, LSM6DSRX_SLV0_CONFIG,
+                           (uint8_t *)&slv0_config, 1);
+
+exit:
   ret += lsm6dsrx_mem_bank_set(ctx, LSM6DSRX_USER_BANK);
 
   return ret;
