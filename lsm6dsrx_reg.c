@@ -12144,35 +12144,32 @@ int32_t lsm6dsrx_s4s_tph_res_get(const stmdev_ctx_t *ctx,
   * @brief  Sensor synchronization time frame.[set]
   *
   * @param  ctx    Read / write interface definitions.(ptr)
-  * @param  val    Change the values of tph_l in S4S_TPH_L and
-  *                tph_h in S4S_TPH_H
+  * @param  val    S4S time frame expressed as a number of samples.
+  *                     The input must be an even number.
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
 int32_t lsm6dsrx_s4s_tph_val_set(const stmdev_ctx_t *ctx, uint16_t val)
 {
   lsm6dsrx_s4s_tph_l_t s4s_tph_l;
-  lsm6dsrx_s4s_tph_h_t s4s_tph_h;
+  lsm6dsrx_s4s_tph_h_t s4s_tph_h = {0};
   int32_t ret;
 
   ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_S4S_TPH_L, (uint8_t *)&s4s_tph_l, 1);
 
+  s4s_tph_l.tph_l = (uint8_t)((val & 0x00FEu) >> 1);
+
+  if ((val & 0xFF00u) != 0)
+  {
+    s4s_tph_l.tph_h_sel = 1;
+
+    s4s_tph_h.tph_h = (uint8_t)((val & 0xFF00U) >> 8);
+  }
+
   if (ret == 0)
   {
-    s4s_tph_l.tph_l = (uint8_t)(val & 0x007FU);
     ret = lsm6dsrx_write_reg(ctx, LSM6DSRX_S4S_TPH_L,
                              (uint8_t *)&s4s_tph_l, 1);
-  }
-
-  if (ret == 0)
-  {
-    ret = lsm6dsrx_read_reg(ctx, LSM6DSRX_S4S_TPH_H,
-                            (uint8_t *)&s4s_tph_h, 1);
-  }
-
-  if (ret == 0)
-  {
-    s4s_tph_h.tph_h = (uint8_t)((val & 0x7F80U) >> 7);
     ret = lsm6dsrx_write_reg(ctx, LSM6DSRX_S4S_TPH_H,
                              (uint8_t *)&s4s_tph_h, 1);
   }
@@ -12184,7 +12181,7 @@ int32_t lsm6dsrx_s4s_tph_val_set(const stmdev_ctx_t *ctx, uint16_t val)
   * @brief  Sensor synchronization time frame.[get]
   *
   * @param  ctx    Read / write interface definitions.(ptr)
-  * @param  val    Get the values of tph_l in S4S_TPH_L and tph_h in S4S_TPH_H
+  * @param  val    Get the S4S time frame expressed in number of samples.
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
@@ -12205,8 +12202,8 @@ int32_t lsm6dsrx_s4s_tph_val_get(const stmdev_ctx_t *ctx, uint16_t *val)
   }
 
   *val = s4s_tph_h.tph_h;
-  *val = *val << 7;
-  *val += s4s_tph_l.tph_l;
+  *val = *val << 8;
+  *val += s4s_tph_l.tph_l << 1;
 
   return ret;
 }
