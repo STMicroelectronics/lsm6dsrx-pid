@@ -2929,8 +2929,6 @@ int32_t lsm6dsrx_acceleration_raw_get(const stmdev_ctx_t *ctx, int16_t *val);
 
 int32_t lsm6dsrx_fifo_out_raw_get(const stmdev_ctx_t *ctx, uint8_t *val);
 
-int32_t lsm6dsrx_mlc_out_get(const stmdev_ctx_t *ctx, uint8_t *val);
-
 int32_t lsm6dsrx_odr_cal_reg_set(const stmdev_ctx_t *ctx, int8_t val);
 int32_t lsm6dsrx_odr_cal_reg_get(const stmdev_ctx_t *ctx, int8_t *val);
 
