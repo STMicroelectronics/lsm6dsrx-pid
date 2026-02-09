@@ -6298,28 +6298,36 @@ int32_t lsm6dsrx_tap_axis_priority_get(const stmdev_ctx_t *ctx,
 
   switch (tap_cfg1.tap_priority)
   {
-    case LSM6DSRX_XYZ:
+    case 0x00U:
       *val = LSM6DSRX_XYZ;
       break;
 
-    case LSM6DSRX_YXZ:
+    case 0x01U:
       *val = LSM6DSRX_YXZ;
       break;
 
-    case LSM6DSRX_XZY:
+    case 0x02U:
       *val = LSM6DSRX_XZY;
       break;
 
-    case LSM6DSRX_ZYX:
+    case 0x03U:
       *val = LSM6DSRX_ZYX;
       break;
 
-    case LSM6DSRX_YZX:
+    case 0x04U:
+      *val = LSM6DSRX_XYZ;
+      break;
+
+    case 0x05U:
       *val = LSM6DSRX_YZX;
       break;
 
-    case LSM6DSRX_ZXY:
+    case 0x06U:
       *val = LSM6DSRX_ZXY;
+      break;
+
+    case 0x07U:
+      *val = LSM6DSRX_ZYX;
       break;
 
     default:
