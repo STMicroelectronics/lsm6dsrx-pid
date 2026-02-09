@@ -261,7 +261,7 @@ int32_t lsm6dsrx_xl_data_rate_set(const stmdev_ctx_t *ctx,
   uint8_t mlc_enable;
   lsm6dsrx_mlc_odr_t mlc_odr;
   lsm6dsrx_ctrl1_xl_t ctrl1_xl;
-  int32_t ret;
+  int32_t ret = 0;
 
   /* Check the Finite State Machine data rate constraints */
   ret =  lsm6dsrx_fsm_enable_get(ctx, &fsm_enable);
@@ -292,89 +292,65 @@ int32_t lsm6dsrx_xl_data_rate_set(const stmdev_ctx_t *ctx,
         switch (fsm_odr)
         {
           case LSM6DSRX_ODR_FSM_12Hz5:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_12Hz5;
-            }
-
-            else
-            {
-              odr_xl = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_FSM_26Hz:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_26Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_12Hz5)
+            else if (odr_xl == LSM6DSRX_XL_ODR_12Hz5)
             {
               odr_xl = LSM6DSRX_XL_ODR_26Hz;
-            }
-
-            else
-            {
-              odr_xl = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_FSM_52Hz:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_12Hz5)
+            else if (odr_xl == LSM6DSRX_XL_ODR_12Hz5)
             {
               odr_xl = LSM6DSRX_XL_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_26Hz)
+            else if (odr_xl == LSM6DSRX_XL_ODR_26Hz)
             {
               odr_xl = LSM6DSRX_XL_ODR_52Hz;
-            }
-
-            else
-            {
-              odr_xl = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_FSM_104Hz:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_12Hz5)
+            else if (odr_xl == LSM6DSRX_XL_ODR_12Hz5)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_26Hz)
+            else if (odr_xl == LSM6DSRX_XL_ODR_26Hz)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_52Hz)
+            else if (odr_xl == LSM6DSRX_XL_ODR_52Hz)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else
-            {
-              odr_xl = val;
-            }
-
-            break;
-
-          default:
-            odr_xl = val;
             break;
         }
       }
@@ -397,89 +373,65 @@ int32_t lsm6dsrx_xl_data_rate_set(const stmdev_ctx_t *ctx,
         switch (mlc_odr)
         {
           case LSM6DSRX_ODR_PRGS_12Hz5:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_12Hz5;
-            }
-
-            else
-            {
-              odr_xl = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_PRGS_26Hz:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_26Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_12Hz5)
+            else if (odr_xl == LSM6DSRX_XL_ODR_12Hz5)
             {
               odr_xl = LSM6DSRX_XL_ODR_26Hz;
-            }
-
-            else
-            {
-              odr_xl = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_PRGS_52Hz:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_12Hz5)
+            else if (odr_xl == LSM6DSRX_XL_ODR_12Hz5)
             {
               odr_xl = LSM6DSRX_XL_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_26Hz)
+            else if (odr_xl == LSM6DSRX_XL_ODR_26Hz)
             {
               odr_xl = LSM6DSRX_XL_ODR_52Hz;
-            }
-
-            else
-            {
-              odr_xl = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_PRGS_104Hz:
-            if (val == LSM6DSRX_XL_ODR_OFF)
+            if (odr_xl == LSM6DSRX_XL_ODR_OFF)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_12Hz5)
+            else if (odr_xl == LSM6DSRX_XL_ODR_12Hz5)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_26Hz)
+            else if (odr_xl == LSM6DSRX_XL_ODR_26Hz)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_XL_ODR_52Hz)
+            else if (odr_xl == LSM6DSRX_XL_ODR_52Hz)
             {
               odr_xl = LSM6DSRX_XL_ODR_104Hz;
             }
 
-            else
-            {
-              odr_xl = val;
-            }
-
-            break;
-
-          default:
-            odr_xl = val;
             break;
         }
       }
@@ -555,7 +507,6 @@ int32_t lsm6dsrx_xl_data_rate_get(const stmdev_ctx_t *ctx,
     case LSM6DSRX_XL_ODR_833Hz:
       *val = LSM6DSRX_XL_ODR_833Hz;
       break;
-
     case LSM6DSRX_XL_ODR_1666Hz:
       *val = LSM6DSRX_XL_ODR_1666Hz;
       break;
@@ -677,7 +628,7 @@ int32_t lsm6dsrx_gy_data_rate_set(const stmdev_ctx_t *ctx,
   uint8_t mlc_enable;
   lsm6dsrx_mlc_odr_t mlc_odr;
   lsm6dsrx_ctrl2_g_t ctrl2_g;
-  int32_t ret;
+  int32_t ret = 0;
 
   /* Check the Finite State Machine data rate constraints */
   ret =  lsm6dsrx_fsm_enable_get(ctx, &fsm_enable);
@@ -708,95 +659,70 @@ int32_t lsm6dsrx_gy_data_rate_set(const stmdev_ctx_t *ctx,
         switch (fsm_odr)
         {
           case LSM6DSRX_ODR_FSM_12Hz5:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_12Hz5;
-            }
-
-            else
-            {
-              odr_gy = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_FSM_26Hz:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_26Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_12Hz5)
+            else if (odr_gy == LSM6DSRX_GY_ODR_12Hz5)
             {
               odr_gy = LSM6DSRX_GY_ODR_26Hz;
-            }
-
-            else
-            {
-              odr_gy = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_FSM_52Hz:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_12Hz5)
+            else if (odr_gy == LSM6DSRX_GY_ODR_12Hz5)
             {
               odr_gy = LSM6DSRX_GY_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_26Hz)
+            else if (odr_gy == LSM6DSRX_GY_ODR_26Hz)
             {
               odr_gy = LSM6DSRX_GY_ODR_52Hz;
-            }
-
-            else
-            {
-              odr_gy = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_FSM_104Hz:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_12Hz5)
+            else if (odr_gy == LSM6DSRX_GY_ODR_12Hz5)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_26Hz)
+            else if (odr_gy == LSM6DSRX_GY_ODR_26Hz)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_52Hz)
+            else if (odr_gy == LSM6DSRX_GY_ODR_52Hz)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else
-            {
-              odr_gy = val;
-            }
-
-            break;
-
-          default:
-            odr_gy = val;
             break;
         }
       }
     }
   }
-
   /* Check the Machine Learning Core data rate constraints */
   mlc_enable = PROPERTY_DISABLE;
 
@@ -813,89 +739,65 @@ int32_t lsm6dsrx_gy_data_rate_set(const stmdev_ctx_t *ctx,
         switch (mlc_odr)
         {
           case LSM6DSRX_ODR_PRGS_12Hz5:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_12Hz5;
-            }
-
-            else
-            {
-              odr_gy = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_PRGS_26Hz:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_26Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_12Hz5)
+            else if (odr_gy == LSM6DSRX_GY_ODR_12Hz5)
             {
               odr_gy = LSM6DSRX_GY_ODR_26Hz;
-            }
-
-            else
-            {
-              odr_gy = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_PRGS_52Hz:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_12Hz5)
+            else if (odr_gy == LSM6DSRX_GY_ODR_12Hz5)
             {
               odr_gy = LSM6DSRX_GY_ODR_52Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_26Hz)
+            else if (odr_gy == LSM6DSRX_GY_ODR_26Hz)
             {
               odr_gy = LSM6DSRX_GY_ODR_52Hz;
-            }
-
-            else
-            {
-              odr_gy = val;
             }
 
             break;
 
           case LSM6DSRX_ODR_PRGS_104Hz:
-            if (val == LSM6DSRX_GY_ODR_OFF)
+            if (odr_gy == LSM6DSRX_GY_ODR_OFF)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_12Hz5)
+            else if (odr_gy == LSM6DSRX_GY_ODR_12Hz5)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_26Hz)
+            else if (odr_gy == LSM6DSRX_GY_ODR_26Hz)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else if (val == LSM6DSRX_GY_ODR_52Hz)
+            else if (odr_gy == LSM6DSRX_GY_ODR_52Hz)
             {
               odr_gy = LSM6DSRX_GY_ODR_104Hz;
             }
 
-            else
-            {
-              odr_gy = val;
-            }
-
-            break;
-
-          default:
-            odr_gy = val;
             break;
         }
       }
