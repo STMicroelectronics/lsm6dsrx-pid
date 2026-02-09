@@ -10565,7 +10565,7 @@ int32_t lsm6dsrx_fsm_data_rate_set(const stmdev_ctx_t *ctx,
   if (ret == 0)
   {
     emb_func_odr_cfg_b.not_used_01 = 3; /* set default values */
-    emb_func_odr_cfg_b.not_used_02 = 1; /* set default values */
+    emb_func_odr_cfg_b.not_used_02 = 2; /* set default values */
     emb_func_odr_cfg_b.fsm_odr = (uint8_t)val;
     ret = lsm6dsrx_write_reg(ctx, LSM6DSRX_EMB_FUNC_ODR_CFG_B,
                              (uint8_t *)&emb_func_odr_cfg_b, 1);
