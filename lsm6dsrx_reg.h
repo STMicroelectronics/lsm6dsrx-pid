@@ -2265,7 +2265,7 @@ typedef enum
   LSM6DSRX_HP_ODR_DIV_400            = 0x16,
   LSM6DSRX_HP_ODR_DIV_800            = 0x17,
   LSM6DSRX_LP_ODR_DIV_2              = 0x01,
-  LSM6DSRX_LP_ODR_DIV_4              = 0x00,
+  LSM6DSRX_LP_ODR_DIV_4              = 0x80,
   LSM6DSRX_LP_ODR_DIV_10             = 0x81,
   LSM6DSRX_LP_ODR_DIV_20             = 0x82,
   LSM6DSRX_LP_ODR_DIV_45             = 0x83,
