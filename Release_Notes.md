@@ -30,7 +30,21 @@ This directory contains the LSM6DSRX component drivers.
 # Update history
 
 ::: {.collapse}
-<input type="checkbox" id="collapse-section10" checked aria-hidden="true">
+<input type="checkbox" id="collapse-section11" checked aria-hidden="true">
+<label for="collapse-section11" aria-hidden="true">V4.0.1 / 18-Mar-2026</label>
+<div>
+
+## Main changes
+
+- Fix some MISRA issues
+- Add parameter names to stmdev callbacks to fix a MISRA issue
+- Add const qualifier to mag_soft_iron_set API
+- Remove declaration of unimplemented ln_pg_read API
+
+##
+
+</div>
+<input type="checkbox" id="collapse-section10" aria-hidden="true">
 <label for="collapse-section10" aria-hidden="true">V4.0.0 / 13-Mar-2026</label>
 <div>
 
