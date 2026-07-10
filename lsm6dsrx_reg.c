@@ -259,9 +259,9 @@ int32_t lsm6dsrx_xl_data_rate_set(const stmdev_ctx_t *ctx,
 {
   lsm6dsrx_odr_xl_t odr_xl =  val;
   lsm6dsrx_emb_fsm_enable_t fsm_enable = {0};
-  lsm6dsrx_fsm_odr_t fsm_odr = {0};
+  lsm6dsrx_fsm_odr_t fsm_odr = LSM6DSRX_ODR_FSM_12Hz5;
   uint8_t mlc_enable = 0;
-  lsm6dsrx_mlc_odr_t mlc_odr = {0};
+  lsm6dsrx_mlc_odr_t mlc_odr = LSM6DSRX_ODR_PRGS_12Hz5;
   lsm6dsrx_ctrl1_xl_t ctrl1_xl = {0};
   int32_t ret = 0;
 
@@ -650,9 +650,9 @@ int32_t lsm6dsrx_gy_data_rate_set(const stmdev_ctx_t *ctx,
 {
   lsm6dsrx_odr_g_t odr_gy =  val;
   lsm6dsrx_emb_fsm_enable_t fsm_enable = {0};
-  lsm6dsrx_fsm_odr_t fsm_odr = {0};
+  lsm6dsrx_fsm_odr_t fsm_odr = LSM6DSRX_ODR_FSM_12Hz5;
   uint8_t mlc_enable = {0};
-  lsm6dsrx_mlc_odr_t mlc_odr = {0};
+  lsm6dsrx_mlc_odr_t mlc_odr = LSM6DSRX_ODR_PRGS_12Hz5;
   lsm6dsrx_ctrl2_g_t ctrl2_g = {0};
   int32_t ret = 0;
 
