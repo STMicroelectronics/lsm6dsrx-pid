@@ -2858,7 +2858,7 @@ int32_t lsm6dsrx_fifo_temp_batch_get(const stmdev_ctx_t *ctx,
 
 typedef enum
 {
-  LSM6DSRX_NO_DECIMATION = 0,
+  LSM6DSRX_NOT_BATCHED   = 0,
   LSM6DSRX_DEC_1         = 1,
   LSM6DSRX_DEC_8         = 2,
   LSM6DSRX_DEC_32        = 3,
